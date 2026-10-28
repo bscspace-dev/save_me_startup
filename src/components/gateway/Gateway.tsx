@@ -37,7 +37,7 @@ export function Gateway() {
 
       {/* 예비 창업자 */}
       <Link
-        href="/franchise"
+        href="/knowhow"
         className="group relative flex min-h-[50dvh] flex-1 items-center justify-center overflow-hidden bg-fd-bg px-8 pb-24 pt-52 md:pt-44 text-fd-text transition-[flex-grow] duration-700 ease-out md:min-h-dvh md:hover:flex-[1.4]"
       >
         <motion.div
@@ -61,7 +61,7 @@ export function Gateway() {
 
       {/* 가맹본부 */}
       <Link
-        href="/location"
+        href="/identity"
         className="group relative flex min-h-[50dvh] flex-1 items-center justify-center overflow-hidden bg-br-bg px-8 pb-24 pt-24 md:pt-44 text-br-ink transition-[flex-grow] duration-700 ease-out md:min-h-dvh md:hover:flex-[1.4]"
       >
         <motion.div

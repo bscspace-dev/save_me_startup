@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { PortalFooter, PortalHeader } from "@/components/portal/Chrome";
+import { ChannelSection } from "@/components/portal/ChannelSection";
 import { LandingPopup } from "@/components/portal/LandingPopup";
 import { PortalMain } from "@/components/portal/PortalMain";
 import { InquiryForm } from "@/components/ui/InquiryForm";
@@ -20,6 +21,8 @@ export default function Home() {
         <Suspense fallback={<div className="min-h-dvh" />}>
           <Market />
         </Suspense>
+
+        <ChannelSection />
 
         <section id="quick" className="px-6 py-28">
           <div className="mx-auto max-w-3xl rounded-3xl border border-pt-line bg-pt-card p-8 md:p-12">

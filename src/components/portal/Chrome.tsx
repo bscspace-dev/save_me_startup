@@ -4,10 +4,11 @@ import { SITE } from "@/lib/site";
 
 const NAV = [
   { href: "/about", label: "회사소개" },
-  { href: "/franchise", label: "전수창업" },
-  { href: "/location", label: "신규창업" },
-  { href: "/listings", label: "등록된 매물" },
+  { href: "/knowhow", label: "전수창업" },
+  { href: "/identity", label: "신규창업" },
   { href: "/#picks", label: "Pick한 브랜드" },
+  { href: "/listings", label: "등록된 매물" },
+  { href: "/#channel", label: "채널" },
   { href: "/#quick", label: "상담받기" },
 ];
 
@@ -20,7 +21,7 @@ export function PortalHeader() {
             <Logo />
             <span>{SITE.name}</span>
           </Link>
-          <nav className="hidden gap-5 text-sm text-pt-mute md:flex lg:gap-7">
+          <nav className="hidden gap-5 text-sm text-pt-mute md:flex xl:gap-7">
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className="transition hover:text-pt-text">
                 {n.label}

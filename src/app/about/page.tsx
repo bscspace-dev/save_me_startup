@@ -36,8 +36,8 @@ const VALUES = [
 ];
 
 const SERVICES = [
-  { href: "/franchise", title: "프랜차이즈 전수창업", desc: "브랜드 비교부터 계약, 오픈까지 함께합니다." },
-  { href: "/location", title: "신규창업 종합 컨설팅", desc: "입지 분석부터 인테리어, 마케팅까지 설계합니다." },
+  { href: "/knowhow", title: "프랜차이즈 전수창업", desc: "브랜드 비교부터 계약, 오픈까지 함께합니다." },
+  { href: "/identity", title: "신규창업 종합 컨설팅", desc: "입지 분석부터 인테리어, 마케팅까지 설계합니다." },
 ];
 
 const INFO = [

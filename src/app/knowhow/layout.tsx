@@ -19,7 +19,7 @@ const NAV = [
   { href: "#faq", label: "FAQ" },
 ];
 
-export default function FranchiseLayout({ children }: LayoutProps<"/franchise">) {
+export default function FranchiseLayout({ children }: LayoutProps<"/knowhow">) {
   return (
     <div className="bg-fd-bg text-fd-text">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-fd-line/60 bg-fd-bg/80 backdrop-blur">

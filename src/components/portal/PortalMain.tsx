@@ -11,14 +11,14 @@ import { Thumb } from "./Thumb";
 const STARTUPS = [
   {
     no: "01",
-    href: "/franchise",
+    href: "/knowhow",
     title: "프랜차이즈 전수창업",
     desc: "검증된 브랜드의 노하우를 전수 받아 시작합니다. 브랜드 시작부터 오픈까지 함께합니다.",
     tags: ["창업상담", "브랜드 노하우", "오픈지원"],
   },
   {
     no: "02",
-    href: "/location",
+    href: "/identity",
     title: "신규창업 컨설팅",
     desc: "나만의 가게를 처음부터 설계합니다. 입지 분석부터 인테리어, 마케팅까지 함께합니다.",
     tags: ["입지 분석", "브랜드 아이덴티티", "인테리어", "마케팅"],

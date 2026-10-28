@@ -17,7 +17,7 @@ const NAV = [
   { href: "#faq", label: "FAQ" },
 ];
 
-export default function LocationLayout({ children }: LayoutProps<"/location">) {
+export default function LocationLayout({ children }: LayoutProps<"/identity">) {
   return (
     <div className="bg-br-bg text-br-ink">
       <header className="fixed inset-x-0 top-0 z-50 bg-br-bg/90 backdrop-blur">
