@@ -81,6 +81,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 사이트명, 연락처, 회사 정보는 `src/lib/site.ts` 한 곳에서 바꾸면 전체에 반영됩니다.
 현재 이메일과 사업자등록번호는 임시 값이므로 실제 값으로 교체해야 합니다.
 
+## 정식 오픈 전 체크리스트 (테스트 기간 설정 해제)
+
+현재는 테스트 기간이라 아래 제한이 걸려 있습니다. 정식 오픈할 때 풀어야 합니다.
+
+- [ ] `src/lib/site.ts`의 `testMode`를 `false`로 변경 (테스트 안내 팝업, 검색엔진 차단 `noindex`와 `robots.txt` 해제)
+- [ ] `src/lib/site.ts`의 `inquiryOpen`을 `true`로 변경 (문의 접수 재개)
+- [ ] 문의를 열기 전에 개인정보처리방침 페이지 준비
+- [ ] 전화번호, 대표명, 주소, 이메일, 사업자등록번호를 실제 값으로 교체
+- [ ] Supabase에 매물과 브랜드를 `published = true`로 등록
+- [ ] Vercel 무료(Hobby) 플랜은 비상업 용도 전용이므로 상업 운영 전에 유료 플랜 확인
+
 ## 스크립트
 
 | 명령 | 설명 |
