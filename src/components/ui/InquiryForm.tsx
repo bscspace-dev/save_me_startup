@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { submitInquiry } from "@/app/actions";
+import { SITE } from "@/lib/site";
 
 type Kind = "franchise" | "location";
 type Theme = Kind | "portal";
@@ -51,6 +52,16 @@ function Field({ label, cls, wide, children }: { label: string; cls: string; wid
 export function InquiryForm({ kind, theme = kind }: { kind: Kind; theme?: Theme }) {
   const [state, action, pending] = useActionState(submitInquiry, null);
   const t = THEME[theme];
+
+  if (!SITE.inquiryOpen) {
+    return (
+      <p className={`py-10 text-center text-lg font-bold leading-relaxed ${t.consent}`}>
+        현재 테스트 기간으로 문의 접수가 중단되어 있습니다.
+        <br />
+        정식 오픈 후 이용해 주세요.
+      </p>
+    );
+  }
 
   if (state?.ok) {
     return <p className={`py-10 text-center text-xl font-bold leading-relaxed ${t.ok}`}>{state.message}</p>;

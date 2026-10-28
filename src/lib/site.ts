@@ -8,4 +8,7 @@ export const SITE = {
   ceo: "장범수",
   bizNo: "000-00-00000",
   address: "대구광역시 달서구 문화회관길 145",
+  // 테스트 기간 설정: testMode가 true면 접속 시 테스트 안내 팝업이 뜨고, inquiryOpen이 false면 문의 접수가 중단됩니다.
+  testMode: true,
+  inquiryOpen: false,
 } as const;

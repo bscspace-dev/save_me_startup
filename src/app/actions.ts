@@ -1,5 +1,6 @@
 "use server";
 
+import { SITE } from "@/lib/site";
 import { getSupabase } from "@/lib/supabase";
 
 export type InquiryState = { ok: boolean; message: string } | null;
@@ -10,6 +11,8 @@ export async function submitInquiry(
   _prev: InquiryState,
   formData: FormData,
 ): Promise<InquiryState> {
+  if (!SITE.inquiryOpen) return { ok: false, message: "현재 테스트 기간으로 문의 접수가 중단되어 있습니다." };
+
   // 봇이 채우는 숨김 필드
   if (formData.get("website")) return { ok: true, message: "접수되었습니다." };
 
