@@ -4,10 +4,26 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { won } from "@/lib/format";
 import type { Brand } from "@/lib/brands";
-import { CATEGORIES } from "@/lib/categories";
 import type { Listing } from "@/lib/listings";
 import { Reveal } from "@/components/ui/Reveal";
 import { Thumb } from "./Thumb";
+
+const STARTUPS = [
+  {
+    no: "01",
+    href: "/franchise",
+    title: "프랜차이즈 전수창업",
+    desc: "검증된 브랜드의 노하우를 전수 받아 시작합니다. 브랜드 시작부터 오픈까지 함께합니다.",
+    tags: ["창업상담", "브랜드 노하우", "오픈지원"],
+  },
+  {
+    no: "02",
+    href: "/location",
+    title: "신규창업 컨설팅",
+    desc: "나만의 가게를 처음부터 설계합니다. 입지 분석부터 인테리어, 마케팅까지 함께합니다.",
+    tags: ["입지 분석", "브랜드 아이덴티티", "인테리어", "마케팅"],
+  },
+];
 
 export function PortalMain({ listings, brands }: { listings: Listing[]; brands: Brand[] }) {
   return (
@@ -37,19 +53,26 @@ export function PortalMain({ listings, brands }: { listings: Listing[]; brands: 
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="relative mx-auto w-full max-w-3xl text-center"
         >
-          <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">PRECISION LOCATION &amp; LOCATION ANALYSIS FOR YOUR SUCCESS</p>
-          <h1 className="mt-5 text-4xl font-black leading-tight md:text-6xl">
-            대구 <span className="bg-[linear-gradient(transparent_62%,var(--color-pt-gold)_62%)]">상가 · 상권 분석</span> 전문
+          <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">STRATEGIC BUSINESS &amp; STARTUP CONSULTING</p>
+          <h1 className="mt-5 text-4xl font-black leading-tight md:text-5xl">
+            대구 <span className="bg-[linear-gradient(transparent_62%,var(--color-pt-gold)_62%)]">상가 분석</span>부터
+            <br />
+            창업 전략까지
           </h1>
-          <p className="mt-5 text-xl font-bold">실무 중심 <span className="text-pt-gold-deep">상권 입지 컨설팅</span></p>
-          <p className="mt-2 text-lg text-pt-mute"><strong className="font-bold text-pt-text">현장 유동인구 · 매출 데이터</strong> 기반 <span className="text-pt-gold-deep">정밀 분석</span></p>
+          <p className="mt-6 text-xl font-bold">
+            현장을 아는 전문가의 <span className="text-pt-gold-deep">실무 중심 창업 컨설팅</span>
+          </p>
+          <p className="mx-auto mt-3 max-w-xl text-pt-mute">
+            상가 입지 분석부터 브랜드 발굴, 프랜차이즈·전수창업까지
+            <br className="hidden sm:block" /> 현실적인 창업 방향을 제시합니다.
+          </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href="/listings"
+              href="/start"
               className="w-full rounded-full bg-pt-accent px-8 py-3.5 font-bold text-white shadow-lg shadow-black/15 transition hover:-translate-y-0.5 hover:brightness-105 sm:w-auto"
             >
-              매물 보기
+              컨설팅 안내
             </Link>
             <a
               href="#quick"
@@ -83,29 +106,44 @@ export function PortalMain({ listings, brands }: { listings: Listing[]; brands: 
         </motion.ul>
       </section>
 
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-6xl">
+      <section className="px-6 py-28">
+        <div className="mx-auto max-w-5xl">
           <Reveal className="text-center">
             <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">CATEGORY</p>
-            <h2 className="mt-3 text-3xl font-black md:text-4xl">업종별 <span className="text-pt-gold-deep">매물</span></h2>
-            <p className="mt-3 text-pt-mute">원하는 업종의 양도양수 매물을 확인해보세요.</p>
+            <h2 className="mt-3 text-3xl font-black md:text-4xl">
+              창업별 <span className="text-pt-gold-deep">카테고리</span>
+            </h2>
+            <p className="mt-3 text-pt-mute">나에게 맞는 창업 방식을 선택해 보세요.</p>
           </Reveal>
-          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {CATEGORIES.map((c, i) => (
-              <Link
-                key={c.label}
-                href={`/listings?cat=${i}`}
-                className="overflow-hidden rounded-2xl border border-pt-line bg-pt-card text-left transition hover:-translate-y-1 hover:border-pt-gold"
-              >
-                <div className={`aspect-[4/3] bg-gradient-to-br ${c.tone}`} />
-                <p className="px-4 py-3.5 text-center text-sm font-bold">{c.label}</p>
-              </Link>
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {STARTUPS.map((s, i) => (
+              <Reveal key={s.href} delay={i * 0.08}>
+                <Link
+                  href={s.href}
+                  className="group flex h-full flex-col rounded-3xl border border-pt-line bg-pt-card p-8 transition hover:-translate-y-1 hover:border-pt-gold md:p-10"
+                >
+                  <p className="text-sm font-bold text-pt-gold-deep">{s.no}</p>
+                  <h3 className="mt-3 text-2xl font-black md:text-3xl">{s.title}</h3>
+                  <p className="mt-3 text-pt-mute">{s.desc}</p>
+                  <ul className="mt-6 flex flex-wrap gap-2">
+                    {s.tags.map((t) => (
+                      <li key={t} className="rounded-full bg-pt-soft px-3.5 py-1.5 text-sm font-medium">
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-8 inline-flex items-center gap-2 border-t border-pt-line pt-5 font-bold transition group-hover:text-pt-gold-deep">
+                    자세히 보기 <span aria-hidden className="transition group-hover:translate-x-1">→</span>
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
+
       {brands.length > 0 && (
-        <section id="picks" className="border-y border-pt-line bg-pt-soft px-6 py-20">
+        <section id="picks" className="px-6 py-28">
           <div className="mx-auto max-w-6xl">
             <Reveal className="text-center">
               <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">PICK</p>
@@ -117,10 +155,8 @@ export function PortalMain({ listings, brands }: { listings: Listing[]; brands: 
                 <article key={b.id} className="overflow-hidden rounded-2xl border border-pt-line bg-pt-card">
                   <Thumb label={b.category} tone="from-pt-gold/15 to-pt-card" badge="추천" />
                   <div className="p-5">
-                    <p className="text-lg font-black text-pt-gold-deep">{won(b.investTotal)}</p>
-                    <p className="mt-1 font-bold">{b.name}</p>
+                    <p className="text-lg font-black">{b.name}</p>
                     <p className="mt-1 text-sm text-pt-mute">{b.tagline}</p>
-                    {b.stores != null && <p className="mt-3 text-xs text-pt-mute">가맹점 {b.stores}개</p>}
                   </div>
                 </article>
               ))}
@@ -129,14 +165,14 @@ export function PortalMain({ listings, brands }: { listings: Listing[]; brands: 
         </section>
       )}
 
-      <section id="market" className="scroll-mt-16 px-6 py-20">
+      <section id="market" className="scroll-mt-16 px-6 py-28">
         <div className="mx-auto max-w-6xl">
           <Reveal className="text-center">
-            <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">NEW LISTINGS</p>
+            <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">LISTINGS</p>
             <h2 className="mt-3 text-3xl font-black md:text-4xl">
-              <span className="text-pt-gold-deep">신규 등록</span> 매물
+              등록된 <span className="text-pt-gold-deep">상가 매물</span>
             </h2>
-            <p className="mt-3 text-pt-mute">최근 등록된 매물을 확인해보세요.</p>
+            <p className="mt-3 text-pt-mute">구해줘창업에 등록된 상가를 확인해보세요.</p>
           </Reveal>
 
           {listings.length === 0 ? (

@@ -50,7 +50,7 @@ export function LandingPopup() {
             <p className="mt-2 text-xl font-black leading-snug">
               혼자 시작하기 막막하다면?
             </p>
-            <p className="mt-2 text-sm text-pt-mute">브랜드 비교부터 입지 분석, 계약, 오픈까지 창업 컨설팅</p>
+            <p className="mt-2 text-sm text-pt-mute">창업의 모든 과정 구해줘창업이 함께합니다. 바로 시작하세요!</p>
             <span className="mt-4 flex items-center justify-center gap-2 rounded-full bg-pt-accent px-5 py-2.5 text-sm font-bold text-white transition group-hover:brightness-110">
               창업 컨설팅 자세히 보기 <span aria-hidden>→</span>
             </span>

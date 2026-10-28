@@ -1,11 +1,14 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 import { SITE } from "@/lib/site";
 
 const NAV = [
-  { href: "/listings", label: "매물 보기" },
-  { href: "/#picks", label: "추천 브랜드" },
-  { href: "/#quick", label: "매물 의뢰" },
   { href: "/about", label: "회사소개" },
+  { href: "/franchise", label: "전수창업" },
+  { href: "/location", label: "신규창업" },
+  { href: "/listings", label: "등록된 매물" },
+  { href: "/#picks", label: "Pick한 브랜드" },
+  { href: "/#quick", label: "상담받기" },
 ];
 
 export function PortalHeader() {
@@ -13,10 +16,11 @@ export function PortalHeader() {
     <header className="fixed inset-x-0 top-0 z-40 border-b border-pt-line/60 bg-pt-bg/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <div className="flex items-center gap-10">
-          <Link href="/" className="text-lg font-black">
-            {SITE.name} <span className="text-pt-gold-deep">Moa</span>
+          <Link href="/" className="flex items-center gap-2.5 text-lg font-black">
+            <Logo />
+            <span>{SITE.name}</span>
           </Link>
-          <nav className="hidden gap-7 text-sm text-pt-mute md:flex">
+          <nav className="hidden gap-5 text-sm text-pt-mute md:flex lg:gap-7">
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className="transition hover:text-pt-text">
                 {n.label}
@@ -25,7 +29,7 @@ export function PortalHeader() {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/start" className="hidden text-sm text-pt-mute hover:text-pt-text sm:block">
+          <Link href="/#quick" className="hidden text-sm text-pt-mute hover:text-pt-text xl:block">
             창업 컨설팅 →
           </Link>
           <a href={`tel:${SITE.phone}`} className="whitespace-nowrap rounded-full bg-pt-accent px-5 py-2 text-sm font-bold text-white">

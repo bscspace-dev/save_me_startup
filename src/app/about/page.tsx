@@ -58,14 +58,14 @@ export default function AboutPage() {
           <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--color-pt-tint)_0%,var(--color-pt-bg)_65%)]" />
           <Reveal className="relative mx-auto max-w-4xl text-center">
             <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">ABOUT US</p>
-            <h1 className="mt-5 text-4xl font-black leading-tight md:text-6xl">
+            <h1 className="mt-5 text-4xl font-black leading-tight md:text-5xl">
               <span className="text-pt-gold-deep">{SITE.name}</span>을 소개합니다
             </h1>
             <p className="mt-5 text-lg text-pt-mute">{SITE.description}</p>
           </Reveal>
         </section>
 
-        <section className="px-6 py-16">
+        <section className="px-6 py-20">
           <Reveal className="mx-auto max-w-2xl border-l-2 border-pt-gold pl-6">
             <p className="whitespace-pre-line text-xl font-bold leading-relaxed md:text-2xl md:leading-relaxed">
               <Rich text={INTRO[0]} />
@@ -77,7 +77,7 @@ export default function AboutPage() {
           </Reveal>
         </section>
 
-        <section className="border-y border-pt-line bg-pt-soft px-6 py-20">
+        <section className="border-y border-pt-line bg-pt-soft px-6 py-28">
           <div className="mx-auto max-w-6xl">
             <Reveal className="text-center">
               <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">VALUES</p>
@@ -97,7 +97,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="px-6 py-20">
+        <section className="px-6 py-28">
           <div className="mx-auto max-w-6xl">
             <Reveal className="text-center">
               <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">SERVICES</p>
@@ -119,7 +119,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="border-t border-pt-line bg-pt-soft px-6 py-20">
+        <section className="border-t border-pt-line bg-pt-soft px-6 py-28">
           <div className="mx-auto max-w-3xl">
             <Reveal className="text-center">
               <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">INFORMATION</p>

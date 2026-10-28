@@ -16,12 +16,12 @@ export default function Home() {
   return (
     <div className="bg-pt-bg text-pt-text">
       <PortalHeader />
-      <main>
+      <main className="[&>section:nth-of-type(even)]:bg-pt-soft">
         <Suspense fallback={<div className="min-h-dvh" />}>
           <Market />
         </Suspense>
 
-        <section id="quick" className="px-6 py-24">
+        <section id="quick" className="px-6 py-28">
           <div className="mx-auto max-w-3xl rounded-3xl border border-pt-line bg-pt-card p-8 md:p-12">
             <Reveal>
               <p className="text-center text-sm font-bold tracking-widest text-pt-gold-deep">QUICK CONSULT</p>

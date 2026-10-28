@@ -30,13 +30,13 @@ export function LocationHero() {
           transition={{ duration: 1.2, ease }}
           className="text-xs font-bold text-br-accent"
         >
-          NEW BUSINESS CONSULTING
+          IDENTITY CONSULTING
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.15, ease }}
-          className="mt-8 max-w-3xl font-serif text-5xl font-black leading-[1.2] md:text-7xl"
+          className="mt-8 max-w-3xl font-serif text-4xl font-black leading-[1.2] md:text-6xl"
         >
           입지부터 인테리어,
           <br />

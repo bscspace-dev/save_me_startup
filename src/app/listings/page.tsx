@@ -5,8 +5,8 @@ import { ListingBoard } from "@/components/portal/ListingBoard";
 import { getListings } from "@/lib/listings";
 
 export const metadata: Metadata = {
-  title: "업종별 매물",
-  description: "업종별로 등록된 매물을 확인해보세요.",
+  title: "등록된 매물",
+  description: "구해줘창업에 등록된 매물을 업종별로 확인해보세요.",
 };
 
 async function Board() {

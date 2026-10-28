@@ -18,7 +18,7 @@ export function FranchiseHero() {
         >
           자영업자 · 예비 창업자를 위한 전수창업 컨설팅
         </motion.p>
-        <h1 className="text-5xl font-black leading-[1.15] md:text-7xl">
+        <h1 className="text-4xl font-black leading-[1.15] md:text-6xl">
           {words.map((w, i) =>
             w === BREAK ? (
               <br key={i} />
@@ -41,7 +41,7 @@ export function FranchiseHero() {
           transition={{ delay: 0.9, duration: 0.7 }}
           className="mt-8 max-w-xl text-lg leading-relaxed text-fd-mute md:text-xl"
         >
-          운영 중인 가게를 키우고 싶은 사장님도, 처음 창업을 준비하는 분도. 검증된 브랜드의 노하우를 전수받아 시작할 수 있도록 비교부터 계약, 오픈 이후까지 함께합니다.
+          운영 중인 가게를 키우고 싶은 사장님도, 처음 창업을 준비하는 분도. 검증된 브랜드의 노하우를 전수받아 시작할 수 있도록 구해줘창업이 함께합니다.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,8 +52,8 @@ export function FranchiseHero() {
           <a href="#contact" className="rounded-full bg-fd-accent px-8 py-4 text-lg font-bold text-fd-bg transition hover:brightness-110">
             무료 창업 상담
           </a>
-          <a href="#services" className="rounded-full border border-fd-mute/40 px-8 py-4 text-lg font-medium transition hover:border-fd-accent">
-            서비스 보기
+          <a href="#concept" className="rounded-full border border-fd-mute/40 px-8 py-4 text-lg font-medium transition hover:border-fd-accent">
+            전수창업 알아보기
           </a>
         </motion.div>
       </div>

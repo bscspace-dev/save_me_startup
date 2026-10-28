@@ -17,17 +17,28 @@ export function Gateway() {
       >
         <Link
           href="/"
-          aria-label={`${SITE.name} Moa 메인으로 이동`}
+          aria-label="메인페이지로 가기"
           className="pointer-events-auto rounded-full bg-white px-5 py-2 text-sm font-bold tracking-wide text-fd-bg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
         >
-          {SITE.name} <span aria-hidden>→</span>
+          메인페이지로 가기 <span aria-hidden>→</span>
         </Link>
       </motion.div>
+
+      {/* 상단 고정 문구 (링크 없음: 클릭해도 아래 영역으로 이동하지 않음, 배경색에 맞춰 글자색이 반전됨) */}
+      <motion.p
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5, ease }}
+        className="absolute inset-x-0 top-20 z-10 cursor-default select-none px-6 text-center text-2xl font-black leading-snug text-white mix-blend-difference md:top-24 md:text-4xl"
+      >
+        {SITE.name}의
+        <br className="md:hidden" /> 맞춤 컨설팅과 함께하세요!
+      </motion.p>
 
       {/* 예비 창업자 */}
       <Link
         href="/franchise"
-        className="group relative flex min-h-[50dvh] flex-1 items-center justify-center overflow-hidden bg-fd-bg px-8 py-24 text-fd-text transition-[flex-grow] duration-700 ease-out md:min-h-dvh md:hover:flex-[1.4]"
+        className="group relative flex min-h-[50dvh] flex-1 items-center justify-center overflow-hidden bg-fd-bg px-8 pb-24 pt-52 md:pt-44 text-fd-text transition-[flex-grow] duration-700 ease-out md:min-h-dvh md:hover:flex-[1.4]"
       >
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -35,13 +46,13 @@ export function Gateway() {
           transition={{ duration: 0.9, ease }}
           className="relative max-w-md"
         >
-          <p className="mb-4 text-sm font-bold tracking-widest text-fd-accent">FRANCHISE</p>
-          <h2 className="text-4xl font-black leading-tight md:text-5xl">
-            혼자 시작하기
+          <p className="mb-4 text-sm font-bold tracking-widest text-fd-accent">KNOW-HOW</p>
+          <h2 className="text-3xl font-black leading-tight md:text-4xl">
+            배우고 시작하면,
             <br />
-            막막하다면?
+            다릅니다
           </h2>
-          <p className="mt-5 text-lg text-fd-mute">프랜차이즈 전수창업, 브랜드 비교부터 계약, 오픈까지 함께합니다</p>
+          <p className="mt-5 text-lg text-fd-mute">전수창업, 필요한 기술부터 노하우까지 모두 배웁니다</p>
           <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-fd-accent px-6 py-3 font-bold text-fd-bg transition-transform group-hover:translate-x-1">
             프랜차이즈 전수창업 <span aria-hidden>→</span>
           </span>
@@ -51,7 +62,7 @@ export function Gateway() {
       {/* 가맹본부 */}
       <Link
         href="/location"
-        className="group relative flex min-h-[50dvh] flex-1 items-center justify-center overflow-hidden bg-br-bg px-8 py-24 text-br-ink transition-[flex-grow] duration-700 ease-out md:min-h-dvh md:hover:flex-[1.4]"
+        className="group relative flex min-h-[50dvh] flex-1 items-center justify-center overflow-hidden bg-br-bg px-8 pb-24 pt-24 md:pt-44 text-br-ink transition-[flex-grow] duration-700 ease-out md:min-h-dvh md:hover:flex-[1.4]"
       >
         <motion.div
           initial={{ opacity: 0, x: 40 }}
@@ -59,13 +70,13 @@ export function Gateway() {
           transition={{ duration: 0.9, ease }}
           className="relative max-w-md"
         >
-          <p className="mb-4 text-sm font-bold tracking-widest text-br-accent">NEW BUSINESS</p>
-          <h2 className="font-serif text-4xl font-black leading-tight md:text-5xl">
+          <p className="mb-4 text-sm font-bold tracking-widest text-br-accent">IDENTITY</p>
+          <h2 className="font-serif text-3xl font-black leading-tight md:text-4xl">
             내 가게의 시작,
             <br />
-            아이덴티티부터
+            나로부터
           </h2>
-          <p className="mt-5 text-lg text-br-mute">입지 분석부터 인테리어, 마케팅까지 나다운 가게를 처음부터 설계합니다</p>
+          <p className="mt-5 text-lg text-br-mute">신규창업, 나다운 가게 처음이 중요합니다</p>
           <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-br-ink px-6 py-3 font-bold text-white transition-transform group-hover:translate-x-1">
             신규창업 종합 컨설팅 <span aria-hidden>→</span>
           </span>

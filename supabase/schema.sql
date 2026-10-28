@@ -104,12 +104,12 @@ create policy "anyone can read published projects"
   to anon
   using (published = true);
 
--- 유튜브 재생목록 (프랜차이즈 전수창업 사이트의 영상 섹션)
+-- 유튜브 영상 (프랜차이즈 전수창업 사이트의 영상 섹션, 맨 위 한 개만 노출. 테이블 이름은 예전 그대로 playlists)
 create table if not exists public.playlists (
   id uuid primary key default gen_random_uuid(),
-  title text not null,               -- 예: 프랜차이즈 계약 전 꼭 알아야 할 것
+  title text not null,               -- 영상 제목
   description text,                  -- 한 줄 소개
-  url text not null,                 -- 재생목록 주소(https://www.youtube.com/playlist?list=...) 또는 list ID
+  url text not null,                 -- 유튜브 영상 주소(https://www.youtube.com/watch?v=... 또는 https://youtu.be/...) 또는 11자리 영상 ID
   sort_order integer not null default 0,
   published boolean not null default false,
   created_at timestamptz not null default now()

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BackToMoa } from "@/components/ui/BackToMoa";
+import { Logo } from "@/components/ui/Logo";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 const NAV = [
+  { href: "#concept", label: "전수창업이란" },
   { href: "#audience", label: "대상" },
   { href: "#problems", label: "고민" },
-  { href: "#services", label: "서비스" },
   { href: "#brands", label: "발굴 브랜드" },
   { href: "#videos", label: "영상" },
   { href: "#process", label: "진행 과정" },
@@ -24,8 +25,11 @@ export default function FranchiseLayout({ children }: LayoutProps<"/franchise">)
       <header className="fixed inset-x-0 top-0 z-50 border-b border-fd-line/60 bg-fd-bg/80 backdrop-blur">
         <div className="px-6">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between">
-          <Link href="/franchise" className="text-lg font-black">
-            {SITE.name} <span className="text-fd-accent">Franchise</span>
+          <Link href="/" className="flex items-center gap-2.5 text-lg font-black">
+            <Logo />
+            <span>
+              {SITE.name} <span className="text-fd-accent">Know-how</span>
+            </span>
           </Link>
           <nav className="hidden gap-8 text-sm text-fd-mute md:flex">
             {NAV.map((n) => (
@@ -35,8 +39,8 @@ export default function FranchiseLayout({ children }: LayoutProps<"/franchise">)
             ))}
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/location" className="hidden text-sm text-fd-mute hover:text-fd-text sm:block">
-              상가매물·입지분석 →
+            <Link href="/" className="hidden text-sm text-fd-mute hover:text-fd-text sm:block">
+              메인화면으로 돌아가기
             </Link>
             <a href="#contact" className="whitespace-nowrap rounded-full bg-fd-accent px-5 py-2 text-sm font-bold text-fd-bg">
               무료 상담
@@ -49,7 +53,7 @@ export default function FranchiseLayout({ children }: LayoutProps<"/franchise">)
       <BackToMoa theme="franchise" />
       <footer className="border-t border-fd-line px-6 py-12 text-sm leading-relaxed text-fd-mute">
         <div className="mx-auto max-w-6xl">
-          <Link href="/" className="mb-4 inline-block font-bold text-fd-accent hover:underline">← 구해줘창업 Moa 메인으로 돌아가기</Link>
+          <Link href="/" className="mb-4 inline-block font-bold text-fd-accent hover:underline">← 구해줘창업 메인으로 돌아가기</Link>
           <p className="font-bold text-fd-text">{SITE.company}</p>
           <p>
             대표 {SITE.ceo} · 사업자등록번호 {SITE.bizNo}

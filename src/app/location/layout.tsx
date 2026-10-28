@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BackToMoa } from "@/components/ui/BackToMoa";
+import { Logo } from "@/components/ui/Logo";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -10,11 +11,9 @@ export const metadata: Metadata = {
 
 const NAV = [
   { href: "#services", label: "서비스" },
+  { href: "#identity", label: "아이덴티티" },
   { href: "#projects", label: "완성 사례" },
   { href: "#listings", label: "분석 매물" },
-  { href: "#report", label: "분석 리포트" },
-  { href: "#process", label: "프로세스" },
-  { href: "#checklist", label: "계약 전 체크" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -24,9 +23,10 @@ export default function LocationLayout({ children }: LayoutProps<"/location">) {
       <header className="fixed inset-x-0 top-0 z-50 bg-br-bg/90 backdrop-blur">
         <div className="px-8">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between border-b border-br-line">
-          <Link href="/location" className="font-serif text-xl font-black">
-            {SITE.name}
-            <span className="ml-2 hidden text-xs font-medium tracking-[0.3em] text-br-accent sm:inline">NEW BUSINESS</span>
+          <Link href="/" className="flex items-center gap-3 font-serif text-xl font-black">
+            <Logo size={40} />
+            <span>{SITE.name}</span>
+            <span className="hidden text-xs font-medium tracking-[0.3em] text-br-accent sm:inline">IDENTITY</span>
           </Link>
           <nav className="hidden gap-8 text-sm font-medium text-br-mute lg:flex">
             {NAV.map((n) => (
@@ -36,8 +36,8 @@ export default function LocationLayout({ children }: LayoutProps<"/location">) {
             ))}
           </nav>
           <div className="flex items-center gap-5">
-            <Link href="/franchise" className="hidden text-sm text-br-mute hover:text-br-ink sm:block">
-              프랜차이즈 전수창업 →
+            <Link href="/" className="hidden text-sm text-br-mute hover:text-br-ink sm:block">
+              메인화면으로 돌아가기
             </Link>
             <a href="#contact" className="whitespace-nowrap rounded-md bg-br-ink px-5 py-2.5 text-sm font-bold text-white">
               창업 문의
@@ -50,7 +50,7 @@ export default function LocationLayout({ children }: LayoutProps<"/location">) {
       <BackToMoa theme="location" />
       <footer className="bg-br-ink px-8 py-16 text-sm leading-relaxed text-white/70">
         <div className="mx-auto max-w-7xl">
-          <Link href="/" className="mb-6 inline-block font-bold text-white hover:underline">← 구해줘창업 Moa 메인으로 돌아가기</Link>
+          <Link href="/" className="mb-6 inline-block font-bold text-white hover:underline">← 구해줘창업 메인으로 돌아가기</Link>
           <p className="font-serif text-xl font-bold text-white">{SITE.company}</p>
           <p className="mt-4">
             대표 {SITE.ceo} · 사업자등록번호 {SITE.bizNo}

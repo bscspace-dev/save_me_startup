@@ -58,10 +58,10 @@ export function ListingBoard({ listings }: { listings: Listing[] }) {
   return (
     <div className="mx-auto max-w-6xl">
       <p className="text-xs font-bold tracking-[0.3em] text-pt-gold-deep">LISTINGS</p>
-      <h1 className="mt-3 text-3xl font-black md:text-5xl">
-        업종별 <span className="text-pt-gold-deep">매물</span>
+      <h1 className="mt-3 text-3xl font-black md:text-4xl">
+        등록된 <span className="text-pt-gold-deep">매물</span>
       </h1>
-      <p className="mt-3 text-pt-mute">원하는 업종을 골라 등록된 매물을 확인해보세요.</p>
+      <p className="mt-3 text-pt-mute">원하는 업종을 골라 매물을 확인해보세요.</p>
 
       <div className="mt-8 flex flex-wrap gap-2">
         <button type="button" onClick={() => setCatIdx(null)} className={tab(catIdx == null)}>

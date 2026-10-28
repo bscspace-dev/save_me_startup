@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { BrandShowcase } from "@/components/franchise/BrandShowcase";
 import { FranchiseHero } from "@/components/franchise/Hero";
-import { PlaylistShowcase } from "@/components/franchise/PlaylistShowcase";
+import { VideoShowcase } from "@/components/franchise/VideoShowcase";
 import { getBrands } from "@/lib/brands";
-import { getPlaylists } from "@/lib/playlists";
+import { getFeaturedVideo } from "@/lib/playlists";
 import { Faq } from "@/components/ui/Faq";
 import { InquiryForm } from "@/components/ui/InquiryForm";
 import { Reveal } from "@/components/ui/Reveal";
@@ -23,18 +23,17 @@ const AUDIENCE = [
   },
 ];
 
-const PROBLEMS = [
-  ["어떤 브랜드가 좋은지 모르겠어요", "수백 개 브랜드 중 광고와 후기만으로는 비교가 어렵습니다."],
-  ["본사 말만 믿어도 될까요?", "예상 매출·수익 설명이 실제 가맹점 데이터와 맞는지 확인이 필요합니다."],
-  ["투자금이 모자라거나 애매해요", "내 자본과 대출 가능 범위에 맞는 현실적인 업종부터 좁혀야 합니다."],
-  ["계약서가 너무 어려워요", "위약금, 영업지역, 인테리어 조건 등 불리한 조항을 놓치기 쉽습니다."],
+const CONCEPTS = [
+  ["기술", "조리법과 서비스 방식 등 매장 운영에 필요한 실무 기술을 배웁니다."],
+  ["노하우", "상품 구성, 거래처, 마케팅 등 운영하며 쌓인 노하우를 전수받습니다."],
+  ["운영 방식", "매뉴얼과 교육을 통해 매장을 운영하는 방식을 익힙니다."],
 ];
 
-const SERVICES = [
-  ["브랜드 비교 분석", "정보공개서와 가맹점 현황을 기준으로 후보 브랜드를 같은 잣대로 비교합니다."],
-  ["전수 교육·사후지원 검증", "교육 기간과 내용, 운영 매뉴얼, 오픈 후 슈퍼바이징 범위를 계약 전에 확인합니다."],
-  ["수익 구조 검증", "원가·인건비·로열티를 반영해 보수적인 손익 시나리오를 만듭니다."],
-  ["계약서·정보공개서 검토", "불리한 조항과 확인해야 할 항목을 체크리스트로 정리해드립니다."],
+const PROBLEMS = [
+  ["경험이 없어서 막막해요", "경험이 없어도 괜찮습니다. 처음부터 단계별로 배우고, 매뉴얼을 따라 할 수 있는 브랜드를 함께 찾습니다."],
+  ["기술을 제대로 배울 수 있을까요?", "교육 기간과 커리큘럼, 실습 방식을 직접 확인해 드립니다. 충분히 배울 수 있는 브랜드인지 먼저 점검합니다."],
+  ["노하우를 어디까지 전수받나요?", "레시피, 운영 방식, 거래처, 마케팅까지 브랜드별 전수 범위를 한눈에 비교해 정리해 드립니다."],
+  ["오픈 준비를 어떻게 해야 할지 모르겠어요", "상담부터 브랜드 선택, 교육, 매장 세팅, 오픈까지 일정을 단계별로 잡고 함께 진행합니다."],
 ];
 
 const STEPS = [
@@ -61,7 +60,7 @@ async function BrandsSection() {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-sm font-bold tracking-widest text-fd-accent">BRANDS</p>
-          <h2 className="mt-3 text-3xl font-black md:text-5xl">구해줘창업이 발굴한 브랜드</h2>
+          <h2 className="mt-3 text-3xl font-black md:text-4xl">구해줘창업이 발굴한 브랜드</h2>
           <p className="mt-4 text-fd-mute">직접 검토한 브랜드만 소개합니다. 카드를 눌러 상세 정보를 확인하세요.</p>
         </Reveal>
         <div className="mt-12">
@@ -72,20 +71,20 @@ async function BrandsSection() {
   );
 }
 
-async function PlaylistsSection() {
-  const playlists = await getPlaylists();
-  if (playlists.length === 0) return null;
+async function VideoSection() {
+  const video = await getFeaturedVideo();
+  if (!video) return null;
 
   return (
     <section id="videos" className="bg-fd-card/40 px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-sm font-bold tracking-widest text-fd-accent">VIDEO</p>
-          <h2 className="mt-3 text-3xl font-black md:text-5xl">영상으로 먼저 만나보세요</h2>
-          <p className="mt-4 text-fd-mute">창업 준비에 도움이 되는 영상을 주제별 재생목록으로 정리했습니다.</p>
+          <h2 className="mt-3 text-3xl font-black md:text-4xl">구해줘창업 영상에서 만나보세요!</h2>
+          <p className="mt-4 text-fd-mute">창업 준비에 도움이 되는 영상을 소개합니다.</p>
         </Reveal>
         <div className="mt-12">
-          <PlaylistShowcase playlists={playlists} />
+          <VideoShowcase video={video} />
         </div>
       </div>
     </section>
@@ -97,11 +96,38 @@ export default function FranchisePage() {
     <main>
       <FranchiseHero />
 
+      <section id="concept" className="px-6 py-28">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <p className="text-sm font-bold tracking-widest text-fd-accent">CONCEPT</p>
+            <h2 className="mt-3 text-3xl font-black md:text-4xl">전수창업이란?</h2>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-fd-text md:text-xl">
+              검증된 브랜드와 가게의 <strong className="font-black text-fd-accent">기술과 운영 노하우를 직접 배워</strong> 내 가게로 시작하는 창업
+              방식입니다. 혼자 시행착오를 겪는 대신, 이미 검증된 방법을 전수받아 출발합니다.
+            </p>
+          </Reveal>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {CONCEPTS.map(([t, d], i) => (
+              <Reveal key={t} delay={i * 0.08}>
+                <div className="h-full rounded-3xl border border-fd-line bg-fd-card p-8">
+                  <p className="text-sm font-bold text-fd-accent">0{i + 1}</p>
+                  <p className="mt-3 text-2xl font-black">{t}</p>
+                  <p className="mt-3 leading-relaxed text-fd-mute">{d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.1}>
+            <p className="mt-8 text-fd-mute">구해줘창업은 브랜드별 전수 범위와 교육 내용을 비교해, 나에게 맞는 전수창업을 찾도록 돕습니다.</p>
+          </Reveal>
+        </div>
+      </section>
+
       <section id="audience" className="px-6 pt-8 pb-4">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="text-sm font-bold tracking-widest text-fd-accent">FOR YOU</p>
-            <h2 className="mt-3 text-3xl font-black md:text-5xl">이런 분께 맞습니다</h2>
+            <h2 className="mt-3 text-3xl font-black md:text-4xl">이런 분께 맞습니다</h2>
           </Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-2">
             {AUDIENCE.map((a, i) => (
@@ -130,7 +156,7 @@ export default function FranchisePage() {
       <section id="problems" className="px-6 py-28">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <h2 className="text-3xl font-black md:text-5xl">이런 고민, 하고 계신가요?</h2>
+            <h2 className="text-3xl font-black md:text-4xl">전수창업, 이런 점이 걱정되시나요?</h2>
           </Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-2">
             {PROBLEMS.map(([t, d], i) => (
@@ -145,41 +171,19 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      <section id="services" className="bg-fd-card/40 px-6 py-28">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <p className="text-sm font-bold tracking-widest text-fd-accent">SERVICE</p>
-            <h2 className="mt-3 text-3xl font-black md:text-5xl">창업 전에 확인해야 할 4가지</h2>
-          </Reveal>
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {SERVICES.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.08}>
-                <div className="flex h-full gap-5 rounded-3xl border border-fd-line bg-fd-bg p-8">
-                  <span className="text-4xl font-black text-fd-accent">0{i + 1}</span>
-                  <div>
-                    <p className="text-xl font-bold">{t}</p>
-                    <p className="mt-2 leading-relaxed text-fd-mute">{d}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <Suspense>
         <BrandsSection />
       </Suspense>
 
       <Suspense>
-        <PlaylistsSection />
+        <VideoSection />
       </Suspense>
 
       <section id="process" className="px-6 py-28">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="text-sm font-bold tracking-widest text-fd-accent">PROCESS</p>
-            <h2 className="mt-3 text-3xl font-black md:text-5xl">진행 과정</h2>
+            <h2 className="mt-3 text-3xl font-black md:text-4xl">진행 과정</h2>
           </Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-5">
             {STEPS.map(([t, d], i) => (
@@ -198,7 +202,7 @@ export default function FranchisePage() {
       <section id="faq" className="px-6 py-28">
         <div className="mx-auto max-w-3xl">
           <Reveal>
-            <h2 className="text-3xl font-black md:text-5xl">자주 묻는 질문</h2>
+            <h2 className="text-3xl font-black md:text-4xl">자주 묻는 질문</h2>
           </Reveal>
           <div className="mt-12">
             <Faq items={FAQS} itemClass="border-fd-line bg-fd-card" mutedClass="text-fd-mute" />

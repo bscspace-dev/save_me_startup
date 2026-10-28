@@ -1,13 +1,15 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
 
 const SEEN_KEY = "test-notice-seen";
 
-// 테스트 기간 안내 팝업. 사이트 접속 시 가장 먼저 뜨고, 확인하면 이번 방문 동안은 다시 뜨지 않습니다.
+// 테스트 기간 안내 팝업. 메인(/)은 방문할 때마다 뜨고, 다른 페이지는 확인하기 전까지 처음 한 번만 뜹니다.
 export function TestNotice() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -16,8 +18,8 @@ export function TestNotice() {
     try {
       seen = sessionStorage.getItem(SEEN_KEY) === "1";
     } catch {}
-    if (!seen) setOpen(true);
-  }, []);
+    setOpen(pathname === "/" || !seen);
+  }, [pathname]);
 
   const close = () => {
     try {
