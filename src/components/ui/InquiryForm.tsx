@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { submitInquiry } from "@/app/actions";
 
 type Kind = "franchise" | "location";
+type Theme = Kind | "portal";
 
 const THEME = {
   franchise: {
@@ -15,6 +16,16 @@ const THEME = {
     ok: "text-fd-accent",
     err: "text-red-400",
     consent: "text-fd-mute",
+  },
+  portal: {
+    input:
+      "w-full rounded-xl border border-pt-line bg-pt-bg px-4 py-3.5 text-pt-text placeholder:text-pt-mute/60 outline-none transition focus:border-pt-accent",
+    label: "text-sm font-medium text-pt-mute",
+    button:
+      "w-full rounded-xl bg-pt-accent px-6 py-4 text-lg font-bold text-white transition hover:brightness-110 disabled:opacity-60",
+    ok: "text-pt-accent",
+    err: "text-red-600",
+    consent: "text-pt-mute",
   },
   location: {
     input:
@@ -37,9 +48,9 @@ function Field({ label, cls, wide, children }: { label: string; cls: string; wid
   );
 }
 
-export function InquiryForm({ kind }: { kind: Kind }) {
+export function InquiryForm({ kind, theme = kind }: { kind: Kind; theme?: Theme }) {
   const [state, action, pending] = useActionState(submitInquiry, null);
-  const t = THEME[kind];
+  const t = THEME[theme];
 
   if (state?.ok) {
     return <p className={`py-10 text-center text-xl font-bold leading-relaxed ${t.ok}`}>{state.message}</p>;

@@ -12,6 +12,18 @@
   --color-fd-text: #eef1fa;
   --color-fd-mute: #8e98b8;
 
+  /* 회사 메인(매물 포털) — 크림 #F4F0E8 + 차콜 #262626 + 골드 #C6A66B (gold-deep은 글자용으로 어둡게 보정) */
+  --color-pt-bg: #f4f0e8;
+  --color-pt-card: #fbf9f5;
+  --color-pt-line: #e3dccd;
+  --color-pt-soft: #ece6da;
+  --color-pt-tint: #e7dfcc;
+  --color-pt-accent: #262626;
+  --color-pt-gold: #c6a66b;
+  --color-pt-gold-deep: #8c7236;
+  --color-pt-text: #262626;
+  --color-pt-mute: #6b665d;
+
   /* 가맹본부 사이트 — 크림 + 딥그린 + 골드 */
   --color-br-bg: #f6f3ec;
   --color-br-card: #ffffff;

@@ -20,6 +20,8 @@ export type Listing = {
   pros: string[];
   risks: string[];
   analyzedAt: string | null;
+  images: string[]; // 매물 사진 public URL (첫 번째가 대표 사진)
+  notes: string | null; // 특이사항
   sample?: boolean;
 };
 
@@ -48,6 +50,8 @@ const SAMPLES: Listing[] = [
     pros: ["점심·저녁 보행량이 꾸준함", "코너 입지로 간판 노출 우수"],
     risks: ["동일 업종 점포 밀집", "월세 대비 전용면적 협소"],
     analyzedAt: null,
+    images: [],
+    notes: "샘플 특이사항입니다. 권리금 협의 여부, 건물 관련 유의사항, 영업 제한 등을 적어주세요.",
     sample: true,
   },
   {
@@ -73,6 +77,8 @@ const SAMPLES: Listing[] = [
     pros: ["배후 세대 수 풍부", "낮은 임대 부담"],
     risks: ["도보 유입이 적어 배달 의존도 높음"],
     analyzedAt: null,
+    images: [],
+    notes: "샘플 특이사항입니다. 권리금 협의 여부, 건물 관련 유의사항, 영업 제한 등을 적어주세요.",
     sample: true,
   },
 ];
@@ -98,6 +104,8 @@ type Row = {
   pros: string[] | null;
   risks: string[] | null;
   analyzed_at: string | null;
+  images: string[] | null;
+  notes: string | null;
 };
 
 const isProd = () => process.env.NODE_ENV === "production";
@@ -112,7 +120,7 @@ export async function getListings(): Promise<Listing[]> {
   const { data, error } = await supabase
     .from("listings")
     .select(
-      "id,title,district,location_note,floor,size_pyeong,deposit,rent,premium,recommended,status,summary,score_traffic,score_demand,score_competition,score_access,score_rent,pros,risks,analyzed_at",
+      "id,title,district,location_note,floor,size_pyeong,deposit,rent,premium,recommended,status,summary,score_traffic,score_demand,score_competition,score_access,score_rent,pros,risks,analyzed_at,images,notes",
     )
     .neq("status", "closed")
     .order("sort_order", { ascending: true })
@@ -149,5 +157,7 @@ export async function getListings(): Promise<Listing[]> {
     pros: r.pros ?? [],
     risks: r.risks ?? [],
     analyzedAt: r.analyzed_at,
+    images: r.images ?? [],
+    notes: r.notes,
   }));
 }

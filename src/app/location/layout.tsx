@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BackToMoa } from "@/components/ui/BackToMoa";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -46,8 +47,10 @@ export default function LocationLayout({ children }: LayoutProps<"/location">) {
         </div>
       </header>
       {children}
+      <BackToMoa theme="location" />
       <footer className="bg-br-ink px-8 py-16 text-sm leading-relaxed text-white/70">
         <div className="mx-auto max-w-7xl">
+          <Link href="/" className="mb-6 inline-block font-bold text-white hover:underline">← 구해줘창업 Moa 메인으로 돌아가기</Link>
           <p className="font-serif text-xl font-bold text-white">{SITE.company}</p>
           <p className="mt-4">
             대표 {SITE.ceo} · 사업자등록번호 {SITE.bizNo}

@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 구해줘창업
 
-## Getting Started
+예비 창업자와 신규창업자를 위한 **창업 컨설팅 랜딩 사이트**입니다.
+방문자를 두 갈래로 나누어 각자에게 맞는 서비스를 안내하고, 상담 문의를 수집합니다.
 
-First, run the development server:
+## 사이트 기획
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 목적
+- 창업을 준비하는 방문자가 자신의 상황에 맞는 서비스를 바로 찾게 한다.
+- 브랜드·매물·시공 사례로 신뢰를 쌓고, **무료 상담 신청**으로 대상을 전환시킨다.
+
+### 사이트 구조
+
+| 경로 | 이름 | 대상 | 내용 |
+| --- | --- | --- | --- |
+| `/` | 매물 포털 (메인) | 모든 방문자 | 업종별 매물, 추천 브랜드 PICK, 신규 등록 매물, 간편상담. 접속 시 컨설팅 안내 팝업이 뜨고 누르면 `/start`로 이동 |
+| `/listings` | 업종별 매물 | 모든 방문자 | 업종 탭(전체·카페·베이커리·음식점·배달)으로 매물을 걸러 보고, 카드를 누르면 상세 정보와 문의 버튼이 뜬다. 메인의 업종 사진과 신규 매물 카드가 여기로 연결된다 |
+| `/about` | 회사소개 | 모든 방문자 | 회사 소개 문구, 일하는 방식, 서비스 영역, 회사 정보. 문구는 `src/app/about/page.tsx` 상단 상수로 수정 |
+| `/start` | 게이트웨이 | 컨설팅 관심 방문자 | 화면을 둘로 나눠 두 서비스 중 하나를 고르게 하는 진입 페이지 |
+| `/franchise` | 프랜차이즈 전수창업 | 프랜차이즈로 창업하려는 예비 창업자 | 발굴 브랜드, 소개 영상, 추천 대상, 창업 전 체크 4가지, 진행 과정, FAQ, 상담 신청 |
+| `/location` | 신규창업 종합 컨설팅 | 나만의 가게를 새로 열려는 창업자 | 시공 사례, 분석 중인 매물, 서비스 범위, 입지분석 리포트 구성, 프로세스, 상가 계약 체크리스트, FAQ, 상담 신청 |
+
+### 서비스 소개
+- **프랜차이즈 전수창업**: 브랜드 비교부터 계약, 오픈까지 함께한다.
+- **신규창업 종합 컨설팅**: 입지 분석, 브랜드 아이덴티티, 인테리어, 마케팅, 권리금·임대 조건 검토를 맡는다.
+
+### 전환 흐름
+1. `/`에서 서비스를 선택한다.
+2. 각 페이지에서 브랜드, 매물, 사례를 살펴본다.
+3. 페이지 하단 폼으로 상담을 신청한다. (이름, 연락처, 관심 분야, 예산, 지역, 문의 내용, 개인정보 동의)
+4. 문의는 Supabase `inquiries` 테이블에 저장된다. 관리자는 Supabase 대시보드에서 확인한다.
+
+### 콘텐츠 관리
+브랜드, 매물, 시공 사례, 영상은 코드를 고치지 않고 **Supabase 대시보드에서 등록·수정**합니다.
+`published = true`인 항목만 사이트에 노출됩니다.
+
+## 기술 스택
+- Next.js 16 (App Router), React 19, TypeScript
+- Tailwind CSS 4
+- motion (애니메이션)
+- Supabase (DB, 문의 수집)
+
+## 폴더 구조
+
+```
+src/
+├─ app/                 페이지 (/, /franchise, /location)와 문의 접수 서버 액션(actions.ts)
+├─ components/
+│  ├─ gateway/          메인 분할 화면
+│  ├─ franchise/        프랜차이즈 페이지 섹션
+│  ├─ location/         신규창업 페이지 섹션
+│  └─ ui/               공통 (FAQ, 문의 폼, 등장 애니메이션)
+└─ lib/                 Supabase 조회 함수와 사이트 정보 (site.ts)
+supabase/schema.sql     DB 테이블과 RLS 정책
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 시작하기
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+cp .env.local.example .env.local   # Supabase 값 입력
+npm run dev                        # http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 환경 변수 (`.env.local`)
 
-## Learn More
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Supabase 설정
+1. Supabase 프로젝트를 만든다.
+2. SQL Editor에서 `supabase/schema.sql`을 실행한다.
+   - 테이블: `inquiries`, `brands`, `listings`, `projects`, `playlists`
+   - 매물 사진은 Storage 버킷 `listings`에 올리고 public URL을 `listings.images`에 넣는다. 특이사항은 `listings.notes`에 적는다.
+   - 문의는 누구나 등록할 수 있지만 조회는 불가능하다. 공개된 콘텐츠만 누구나 조회할 수 있다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 사이트 정보 수정
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+사이트명, 연락처, 회사 정보는 `src/lib/site.ts` 한 곳에서 바꾸면 전체에 반영됩니다.
+현재 이메일과 사업자등록번호는 임시 값이므로 실제 값으로 교체해야 합니다.
 
-## Deploy on Vercel
+## 스크립트
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| 명령 | 설명 |
+| --- | --- |
+| `npm run dev` | 개발 서버 |
+| `npm run build` | 프로덕션 빌드 |
+| `npm run start` | 빌드 결과 실행 |
+| `npm run lint` | ESLint 검사 |

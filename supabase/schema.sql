@@ -121,3 +121,12 @@ create policy "anyone can read published playlists"
   on public.playlists for select
   to anon
   using (published = true);
+
+-- 매물 사진·특이사항 (이미 listings 테이블을 만든 경우 아래만 추가로 실행하세요)
+-- 사진은 Storage 버킷 'listings'에 업로드한 뒤 public URL을 images에 넣으세요. (첫 번째 이미지가 대표 사진)
+alter table public.listings add column if not exists images text[] not null default '{}';
+alter table public.listings add column if not exists notes text;  -- 특이사항 (권리금 협의, 건물 유의사항 등)
+
+insert into storage.buckets (id, name, public)
+values ('listings', 'listings', true)
+on conflict (id) do nothing;

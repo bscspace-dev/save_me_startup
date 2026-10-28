@@ -15,9 +15,13 @@ export function Gateway() {
         transition={{ duration: 0.8, delay: 0.3, ease }}
         className="pointer-events-none absolute inset-x-0 top-0 z-20 flex justify-center pt-6"
       >
-        <span className="rounded-full bg-white px-5 py-2 text-sm font-bold tracking-wide text-fd-bg shadow-lg">
-          {SITE.name}
-        </span>
+        <Link
+          href="/"
+          aria-label={`${SITE.name} Moa 메인으로 이동`}
+          className="pointer-events-auto rounded-full bg-white px-5 py-2 text-sm font-bold tracking-wide text-fd-bg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+        >
+          {SITE.name} <span aria-hidden>→</span>
+        </Link>
       </motion.div>
 
       {/* 예비 창업자 */}
